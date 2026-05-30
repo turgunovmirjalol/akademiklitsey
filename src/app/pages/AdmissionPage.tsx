@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { admissionService } from '../services/admissionService';
 import { AdmissionCurrentResponse } from '../types';
 import { Skeleton } from '../components/ui/skeleton';
+import { SEO } from '../components/layout/SEO';
 
 export function AdmissionPage() {
   const { t, i18n } = useTranslation();
@@ -63,6 +64,10 @@ export function AdmissionPage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+      <SEO 
+        title={t('nav.admission')} 
+        description={t('admission.pageSubtitle')}
+      />
       {/* Page Header */}
       <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-24 md:py-32 relative">
         <div className="absolute inset-0 bg-black/10"></div>

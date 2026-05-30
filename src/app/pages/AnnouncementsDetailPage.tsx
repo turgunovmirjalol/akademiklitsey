@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { announcementService } from '../services/announcementService';
 import { Announcement } from '../types';
 import { motion } from 'framer-motion';
+import { SEO } from '../components/layout/SEO';
 
 export function AnnouncementsDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -52,6 +53,12 @@ export function AnnouncementsDetailPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
+      <SEO 
+        title={translation.title} 
+        description={translation.short_description}
+        image={announcement.image}
+        type="article"
+      />
       {/* Header with Back Button */}
       <div className="bg-gray-50 dark:bg-gray-900 py-20 md:py-28 border-b border-gray-100 dark:border-gray-800 relative overflow-hidden">
         {/* Decorative elements */}

@@ -6,6 +6,7 @@ import { NewsItem } from '../types';
 import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { uz, ru } from 'date-fns/locale';
+import { SEO } from '../components/layout/SEO';
 
 export function NewsDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -74,6 +75,12 @@ export function NewsDetailPage() {
 
   return (
     <article className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 pb-32">
+      <SEO 
+        title={translation.title} 
+        description={translation.short_description}
+        image={news.image}
+        type="article"
+      />
       {/* Article Header Section */}
       <header className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-800 pt-16 pb-12">
         <div className="container mx-auto px-4">

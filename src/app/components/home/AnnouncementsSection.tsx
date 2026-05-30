@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { announcementService } from '../../services/announcementService';
 import { Announcement } from '../../types';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 export function AnnouncementsSection() {
   const { t, i18n } = useTranslation();
@@ -72,12 +73,13 @@ export function AnnouncementsSection() {
                 className="group relative bg-white dark:bg-gray-950 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-800"
               >
                 {/* Image Section */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   {announcement.image ? (
-                    <img
+                    <ImageWithFallback
                       src={announcement.image}
                       alt={translation.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+                      objectFit="contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-[#0d89b1] to-[#0d89b1] flex items-center justify-center">

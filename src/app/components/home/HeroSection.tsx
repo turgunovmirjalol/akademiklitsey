@@ -7,6 +7,7 @@ import { Autoplay, Pagination, Navigation, EffectFade, Parallax } from 'swiper/m
 import { sliderService } from '../../services/sliderService';
 import { SliderItem } from '../../types';
 import { motion } from 'framer-motion';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 // Swiper styles
 import 'swiper/css';
@@ -40,11 +41,11 @@ export function HeroSection() {
     return (
       <section className="relative h-[80vh] md:h-[95vh] min-h-[600px] overflow-hidden bg-gray-950">
         <div className="absolute inset-0">
-          <img
+          <ImageWithFallback
             src="https://www.samdu.uz/upload/cover-images/62b00cc62723f-62b00cc627241-62b00cc627242-62b00cc627243.png"
-            alt="Default"
+            alt="FDTU 1-son Akademik Litseyi"
             className="w-full h-full object-cover opacity-50"
-            loading="eager"
+            priority={true}
           />
           <div className="absolute inset-0 bg-black/20 z-[1]"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d89b1]/90 via-[#0d89b1]/40 to-transparent md:w-[65%] z-[2]"></div>
@@ -121,11 +122,11 @@ export function HeroSection() {
                   className="w-full h-full overflow-hidden"
                   data-swiper-parallax="30%"
                 >
-                  <img
+                  <ImageWithFallback
                     src={slider.image}
                     alt={translation.title}
                     className="w-full h-full object-cover transform-gpu slide-zoom-image"
-                    loading={index === 0 ? "eager" : "lazy"}
+                    priority={index === 0}
                   />
                 </div>
                 {/* Optimized overlays: Brand color #0d89b1 gradient only on the left for text, clear image in the center/right */}

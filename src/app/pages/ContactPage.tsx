@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useSettings } from '../hooks/useSettings';
 import { settingsService } from '../services/settingsService';
+import { SEO } from '../components/layout/SEO';
 
 export function ContactPage() {
   const { t, i18n } = useTranslation();
@@ -49,6 +50,10 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+      <SEO 
+        title={t('nav.contact')} 
+        description={t('contact.pageSubtitle')}
+      />
       {/* Page Header */}
       <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-24 md:py-32 relative">
         <div className="absolute inset-0 bg-black/10"></div>

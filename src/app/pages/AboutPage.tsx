@@ -1,6 +1,7 @@
 import { Target, Eye, Heart, Building2, Calendar, Phone, MapPin, User, GraduationCap, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { SEO } from '../components/layout/SEO';
 
 export function AboutPage() {
   const { t } = useTranslation();
@@ -64,6 +65,10 @@ export function AboutPage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+      <SEO 
+        title={t('nav.about')} 
+        description={t('about.pageSubtitle')}
+      />
       {/* Page Header */}
       <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-24 md:py-32 relative">
         <div className="absolute inset-0 bg-black/10"></div>

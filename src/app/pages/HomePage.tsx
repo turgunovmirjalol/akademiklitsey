@@ -5,10 +5,12 @@ import { WhyUsSection } from '../components/home/WhyUsSection';
 import { NewsSection } from '../components/home/NewsSection';
 import { AnnouncementsSection } from '../components/home/AnnouncementsSection';
 import { FAQSection } from '../components/home/FAQSection';
+import { SEO } from '../components/layout/SEO';
 
 export function HomePage() {
   return (
     <div>
+      <SEO />
       <HeroSection />
       <StatisticsSection />
       <AboutSection />

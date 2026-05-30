@@ -6,6 +6,7 @@ import { NewsItem } from '../../types';
 import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { uz, ru } from 'date-fns/locale';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 export function NewsSection() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -89,11 +90,12 @@ export function NewsSection() {
                 data-aos-delay={index * 100}
                 className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100 dark:border-gray-800"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img
+                <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                  <ImageWithFallback
                     src={item.image}
                     alt={translation.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+                    objectFit="cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 flex items-center gap-2 text-[10px] font-black text-white bg-white/20 backdrop-blur-md px-4 py-2 rounded-full uppercase tracking-[0.2em] border border-white/20">

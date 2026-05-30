@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { uz, ru } from 'date-fns/locale';
 import { Skeleton } from '../components/ui/skeleton';
+import { SEO } from '../components/layout/SEO';
 
 export function NewsPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -48,6 +49,10 @@ export function NewsPage() {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title={t('nav.news')} 
+        description={t('home.heroDesc')}
+      />
       {/* Page Header */}
       <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-20">
         <div className="container mx-auto px-4">

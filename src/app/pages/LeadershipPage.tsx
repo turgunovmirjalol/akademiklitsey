@@ -5,6 +5,8 @@ import { LeadershipMember } from '../types';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Skeleton } from '../components/ui/skeleton';
+import { SEO } from '../components/layout/SEO';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 export function LeadershipPage() {
   const { t, i18n } = useTranslation();
@@ -33,6 +35,10 @@ export function LeadershipPage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+      <SEO 
+        title={t('nav.leadership')} 
+        description={t('leadership.pageSubtitle')}
+      />
       {/* Page Header */}
       <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-24 md:py-32 relative">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -83,7 +89,7 @@ export function LeadershipPage() {
                     {/* Image Section */}
                     <div className="p-5">
                       <div className="aspect-[4/5] overflow-hidden rounded-[15px] bg-gray-100 dark:bg-gray-800">
-                        <img
+                        <ImageWithFallback
                           src={member.photo}
                           alt={member.full_name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

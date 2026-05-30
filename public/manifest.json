@@ -1,0 +1,21 @@
+{
+  "name": "Farg‘ona Davlat Texnika Universiteti 1-son Akademik Litseyi",
+  "short_name": "FDTU 1-AL",
+  "description": "Farg‘ona Davlat Texnika Universiteti 1-son Akademik Litseyi rasmiy veb-sayti",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d89b1",
+  "icons": [
+    {
+      "src": "/logoicon1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logoicon1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
