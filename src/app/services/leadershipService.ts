@@ -1,6 +1,6 @@
 import { LeadershipMember, LeadershipTranslation } from '../types';
 
-const API_BASE_URL = 'https://academiklitsey.pythonanywhere.com';
+const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const leadershipService = {
   async getManagement(): Promise<LeadershipMember[]> {

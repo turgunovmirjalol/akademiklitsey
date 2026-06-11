@@ -1,6 +1,6 @@
 import { TeacherResponse, Teacher, TeacherTranslation } from '../types';
 
-const API_BASE_URL = 'https://academiklitsey.pythonanywhere.com';
+const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const teacherService = {
   async getAllTeachers(page = 1): Promise<TeacherResponse> {

@@ -31,7 +31,7 @@ export function Footer() {
                 {contactInfo.logo ? (
                   <ImageWithFallback src={contactInfo.logo} alt={siteName.short_name} className="w-full h-full" objectFit="contain" />
                 ) : (
-                  "FDTU"
+                  "FDTU 1-AL"
                 )}
               </div>
               <div>

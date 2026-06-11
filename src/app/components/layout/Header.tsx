@@ -235,7 +235,7 @@ export function Header() {
           <div className="flex items-center justify-between p-4 border-b dark:border-gray-800">
             <div className="flex items-center gap-2">
               <img src="/logoicon.png" alt="Logo" className="w-10 h-10 object-contain" />
-              <span className="font-black text-[#0d89b1] uppercase tracking-tight">FDTU 1-son AL</span>
+              <span className="font-black text-[#0d89b1] uppercase tracking-tight">FDTU 1-AL</span>
             </div>
             <button 
               onClick={() => setIsMobileMenuOpen(false)} 

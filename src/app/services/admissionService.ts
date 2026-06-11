@@ -1,6 +1,6 @@
 import { AdmissionDocument, AdmissionDocumentTranslation, Subject, SubjectTranslation, AdmissionCurrentResponse } from '../types';
 
-const API_BASE_URL = 'https://academiklitsey.pythonanywhere.com';
+const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const admissionService = {
   async getAdmissionDocuments(): Promise<AdmissionDocument[]> {

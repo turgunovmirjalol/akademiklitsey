@@ -43,7 +43,7 @@ export function HeroSection() {
         <div className="absolute inset-0">
           <ImageWithFallback
             src="https://www.samdu.uz/upload/cover-images/62b00cc62723f-62b00cc627241-62b00cc627242-62b00cc627243.png"
-            alt="FDTU 1-son Akademik Litseyi"
+            alt="FARG'ONA DAVLAT TEXNIKA UNIVERSITETI 1-SON AKADEMIK LITSEYI"
             className="w-full h-full object-cover opacity-50"
             priority={true}
           />

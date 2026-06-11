@@ -21,7 +21,7 @@ export interface SiteSettings {
   youtube: string | null;
 }
 
-const API_BASE_URL = 'https://academiklitsey.pythonanywhere.com';
+const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const settingsService = {
   async getSettings(): Promise<SiteSettings | null> {
@@ -40,10 +40,10 @@ export const settingsService = {
   getTranslation(settings: SiteSettings | null, lang: string): SiteTranslations {
     if (!settings) {
       return {
-        short_name: lang === 'ru' ? 'FDTU AL' : 'FDTU AL',
+        short_name: lang === 'ru' ? 'ФДТУ 1-АЛ' : 'FDTU 1-AL',
         full_name: lang === 'ru' 
-          ? 'Академический лицей №1 ФГТУ' 
-          : 'FDTU 1-son Akademik Litseyi',
+          ? 'Академический лицей №1 Ферганского государственного технического университета'
+          : "FARG'ONA DAVLAT TEXNIKA UNIVERSITETI 1-SON AKADEMIK LITSEYI",
         address: lang === 'ru'
           ? 'г. Фергана, МСГ Мурувват, ул. Ферганская, 84'
           : "Farg'ona sh., Muruvvat MFY, Farg'ona ko'chasi, 84-uy"
@@ -98,13 +98,13 @@ export const defaultSettings: SiteSettings = {
   id: 1,
   translations: {
     uz: {
-      short_name: "FDTU AL",
-      full_name: "FDTU Akademik Litsey",
+      short_name: "FDTU 1-AL",
+      full_name: "FARG'ONA DAVLAT TEXNIKA UNIVERSITETI 1-SON AKADEMIK LITSEYI",
       address: ""
     },
     ru: {
-      short_name: "FDTU AL RU",
-      full_name: "FDTU AL RUS",
+      short_name: "ФДТУ 1-АЛ",
+      full_name: "Академический лицей №1 Ферганского государственного технического университета",
       address: ""
     }
   },
@@ -112,7 +112,7 @@ export const defaultSettings: SiteSettings = {
   phone: "",
   email: "",
   website: "",
-  logo: "https://academiklitsey.pythonanywhere.com/media/settings/logoicon.png",
+  logo: "https://api.fdtu1al.uz/media/settings/logoicon.png",
   telegram: null,
   instagram: null,
   facebook: null,

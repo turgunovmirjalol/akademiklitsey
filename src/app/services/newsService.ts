@@ -1,6 +1,6 @@
 import { NewsResponse, NewsItem, NewsTranslation } from '../types';
 
-const API_BASE_URL = 'https://academiklitsey.pythonanywhere.com';
+const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const newsService = {
   async getAllNews(page = 1): Promise<NewsResponse> {
