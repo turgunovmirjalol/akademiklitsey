@@ -9,12 +9,8 @@ import { SliderItem } from '../../types';
 import { motion } from 'framer-motion';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
-// Swiper styles
+// Swiper styles (all styles are bundled in swiper/css in v12)
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
-import 'swiper/css/parallax';
 
 export function HeroSection() {
   const { t, i18n } = useTranslation();
