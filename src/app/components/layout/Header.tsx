@@ -148,9 +148,15 @@ export function Header() {
              <div className="relative overflow-hidden rounded-lg p-1 bg-gray-50 dark:bg-gray-900 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 transition-colors shadow-sm">
                <img src={contactInfo.logo || "/logoicon.png"} alt={siteName.short_name} className="w-8 h-8 md:w-14 md:h-14 object-contain" />
              </div>
-             <div>
-               <div className="text-xs md:text-lg font-black text-gray-900 dark:text-white leading-tight uppercase tracking-tight max-w-[120px] md:max-w-none">
-                 {siteName.short_name}
+             <div className="flex flex-col">
+               <div className="text-[8px] md:text-[10px] lg:text-xs font-black text-[#0d89b1] leading-tight uppercase tracking-[0.15em]">
+                 FARG'ONA DAVLAT TEXNIKA
+               </div>
+               <div className="text-[8px] md:text-[10px] lg:text-xs font-black text-[#0d89b1] leading-tight uppercase tracking-[0.15em]">
+                 UNIVERSITETI
+               </div>
+               <div className="text-[9px] md:text-[11px] lg:text-sm font-black text-gray-900 dark:text-white leading-tight uppercase tracking-tight">
+                 1-SON AKADEMIK LITSEYI
                </div>
              </div>
            </Link>
@@ -235,7 +241,17 @@ export function Header() {
           <div className="flex items-center justify-between p-4 border-b dark:border-gray-800">
             <div className="flex items-center gap-2">
               <img src="/logoicon.png" alt="Logo" className="w-10 h-10 object-contain" />
-              <span className="font-black text-[#0d89b1] uppercase tracking-tight">FDTU 1-AL</span>
+              <div className="flex flex-col">
+                <div className="text-[8px] font-black text-[#0d89b1] leading-tight uppercase tracking-[0.15em]">
+                  FARG'ONA DAVLAT TEXNIKA
+                </div>
+                <div className="text-[8px] font-black text-[#0d89b1] leading-tight uppercase tracking-[0.15em]">
+                  UNIVERSITETI
+                </div>
+                <div className="text-[9px] font-black text-gray-900 dark:text-white leading-tight uppercase tracking-tight">
+                  1-SON AKADEMIK LITSEYI
+                </div>
+              </div>
             </div>
             <button 
               onClick={() => setIsMobileMenuOpen(false)} 
