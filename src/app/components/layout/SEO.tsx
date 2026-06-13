@@ -50,6 +50,11 @@ export const SEO = ({
     ? t('seo.titleTemplate', { title }) 
     : t('seo.defaultTitle');
     
+  // Backward compatibility: if %s is still in the template (just in case)
+  const finalTitle = seoTitle.includes('%s') 
+    ? seoTitle.replace('%s', title || '')
+    : seoTitle;
+    
   const seoDescription = description || t('seo.defaultDescription');
   const seoKeywords = keywords || t('seo.keywords');
   const siteName = t('seo.defaultTitle');
@@ -59,7 +64,7 @@ export const SEO = ({
   return (
     <Helmet>
       {/* Standard metadata tags */}
-      <title>{seoTitle}</title>
+      <title>{finalTitle}</title>
       <meta name="description" content={seoDescription} />
       <meta name="keywords" content={seoKeywords} />
       <meta name="language" content={language} />
