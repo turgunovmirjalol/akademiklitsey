@@ -6,6 +6,7 @@ import { announcementService } from '../services/announcementService';
 import { Announcement } from '../types';
 import { motion } from 'framer-motion';
 import { SEO } from '../components/layout/SEO';
+import { Helmet } from 'react-helmet-async';
 
 export function AnnouncementsDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -58,7 +59,37 @@ export function AnnouncementsDetailPage() {
         description={translation.short_description}
         image={announcement.image}
         type="article"
+        publishedTime={announcement.published_at}
+        author={announcement.created_by}
+        section={announcement.is_important ? "Muhim e'lonlar" : "E'lonlar"}
+        tags={['litsey', 'fdtu', 'e\'lonlar', 'ta\'lim', announcement.is_important ? 'muhim' : ''].filter(Boolean)}
       />
+      
+      {/* Structured Data for Announcement */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Announcement",
+            "headline": translation.title,
+            "description": translation.short_description,
+            "image": announcement.image,
+            "datePublished": announcement.published_at,
+            "author": {
+              "@type": "Organization",
+              "name": "FDTU 1-son Akademik Litseyi"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "FDTU 1-son Akademik Litseyi",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://fdtu1al.uz/litseylogo.png"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
       {/* Header with Back Button */}
       <div className="bg-gray-50 dark:bg-gray-900 py-20 md:py-28 border-b border-gray-100 dark:border-gray-800 relative overflow-hidden">
         {/* Decorative elements */}

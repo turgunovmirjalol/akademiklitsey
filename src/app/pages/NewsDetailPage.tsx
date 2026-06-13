@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import { uz, ru } from 'date-fns/locale';
 import { SEO } from '../components/layout/SEO';
+import { Helmet } from 'react-helmet-async';
 
 export function NewsDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -80,7 +81,39 @@ export function NewsDetailPage() {
         description={translation.short_description}
         image={news.image}
         type="article"
+        publishedTime={news.published_at}
+        modifiedTime={news.updated_at}
+        author={news.created_by}
+        section="Yangiliklar"
+        tags={['litsey', 'fdtu', 'yangiliklar', 'ta\'lim']}
       />
+      
+      {/* Structured Data for News Article */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": translation.title,
+            "description": translation.short_description,
+            "image": [news.image],
+            "datePublished": news.published_at,
+            "dateModified": news.updated_at,
+            "author": {
+              "@type": "Organization",
+              "name": "FDTU 1-son Akademik Litseyi"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "FDTU 1-son Akademik Litseyi",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://fdtu1al.uz/litseylogo.png"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
       {/* Article Header Section */}
       <header className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-800 pt-16 pb-12">
         <div className="container mx-auto px-4">
