@@ -249,6 +249,8 @@
     "subject": "Mavzu",
     "message": "Xabaringiz",
     "send": "Xabarni yuborish",
+    "sending": "Yuborilmoqda...",
+    "error": "Xatolik yuz berdi. Iltimos qaytadan urinib ko'ring.",
     "success": "Xabaringiz muvaffaqiyatli yuborildi!",
     "subjects": {
       "admission": "Qabul bo'yicha savol",

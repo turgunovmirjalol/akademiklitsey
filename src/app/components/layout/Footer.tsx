@@ -59,7 +59,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-black text-lg mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
+            <h3 className="text-white font-black mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
               <span className="w-8 h-px bg-[#0d89b1]"></span>
               {t('footer.quickLinks')}
             </h3>
@@ -83,7 +83,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white font-black text-lg mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
+            <h3 className="text-white font-black  mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
               <span className="w-8 h-px bg-[#0d89b1]"></span>
               {t('footer.contact')}
             </h3>
@@ -115,7 +115,7 @@ export function Footer() {
 
           {/* Working Hours & Map Mini */}
           <div>
-            <h3 className="text-white font-black text-lg mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
+            <h3 className="text-white font-black mb-8 uppercase tracking-widest text-sm flex items-center gap-2">
               <span className="w-8 h-px bg-[#0d89b1]"></span>
               {t('footer.workTime')}
             </h3>
