@@ -184,6 +184,24 @@
     "pageSubtitle": "Farg'ona Davlat Texnika Universiteti 1-son Akademik Litseyiga qabul tartibi, talablar va muhim sanalar",
     "importantInfo": "Muhim ma'lumot",
     "importantDesc": "O'zbekiston Respublikasidagi barcha akademik litseylarga qabul my.edu.uz portal orqali yagona tartibda amalga oshiriladi. Qabul 2026-yil iyun-iyul oylarida bo'ladi.",
+    "academicYear": "o'quv yili uchun qabul",
+    "totalQuota": "Umumiy kvota",
+    "grantQuota": "Grant kvota",
+    "contractQuota": "Shartnoma kvota",
+    "contractPrice": "Shartnoma narxi",
+    "totalStudents": "Jami o'quvchilar",
+    "grantStudents": "Grant bo'yicha",
+    "contractStudents": "Shartnoma bo'yicha",
+    "statusActive": "Hozirda ochiq",
+    "statusClosed": "Yopiq",
+    "importantDates": "Muhim sanalar",
+    "datesTitle": "Qabul jarayoni muddatlari",
+    "applicationPeriod": "Hujjatlar qabuli",
+    "examDate": "Imtihon kuni",
+    "resultsDate": "Natijalar e'lon qilinishi",
+    "onlineApplicationTitle": "Onlayn ariza topshirish",
+    "onlineApplicationDesc": "Arizangizni onlayn topshirish uchun quyidagi havolaga o'ting",
+    "onlineApplyBtn": "Onlayn ariza berish",
     "stepsTitle": "Qabul bosqichlari",
     "step1Title": "my.edu.uz portalidan ro'yxatdan o'tish",
     "step1Desc": "2026-yil iyun oyida my.edu.uz portaliga o'tib litsey nomidan ariza qoldiring",
@@ -206,7 +224,7 @@
     "totalTitle": "Umumiy ko'rsatkichlar",
     "totalQuestions": "Jami savollar:",
     "totalQuestionsValue": "60 ta",
-    "maxScore": "Maksimal ball:",
+    "maxScore": "Maksimal ball",
     "maxScoreValue": "146 ball",
     "duration": "Test davomiyligi:",
     "durationValue": "2 soat",
@@ -214,6 +232,9 @@
     "natural": "Tabiiy fanlar",
     "exact": "Aniq fanlar (iqtisod)",
     "testLocation": "Test sinovlari Farg'ona davlat texnika universiteti (FDTU) hududidagi maxsus tayyorlangan auditoriyalarda o'tkaziladi.",
+    "subjectsTitle": "Imtihon fanlari",
+    "requiredDocs": "Kerakli hujjatlar",
+    "required": "Majburiy",
     "documentsTitle": "Kerakli hujjatlar",
     "req1": "9-sinf bitiruvchisi bo'lish",
     "req2": "my.edu.uz portalidan ro'yxatdan o'tganlik",
@@ -342,19 +363,19 @@
       "desc": "Dasturlash asoslari (Python, C++), algoritmlar va ma'lumotlar strukturasi."
     },
     "biology": {
-        "name": "Biologiya",
-        "desc": "Molekulyar biologiya, genetika, ekologiya va tirik organizmlar anatomiyasi."
-      }
-    },
-    "photos": {
-      "pageSubtitle": "Litseymizning hayotidan lavhalar va muhim tadbirlar",
-      "graduation": "Bitiruvchilar marosimi 2025",
-      "olympiad": "Respublika olimpiadasi",
-      "sports": "Sport tadbirlari",
-      "stem": "STEM laboratoriya ochilishi",
-      "others": "Boshqa"
-    },
-    "notFound": {
+      "name": "Biologiya",
+      "desc": "Molekulyar biologiya, genetika, ekologiya va tirik organizmlar anatomiyasi."
+    }
+  },
+  "photos": {
+    "pageSubtitle": "Litseymizning hayotidan lavhalar va muhim tadbirlar",
+    "graduation": "Bitiruvchilar marosimi 2025",
+    "olympiad": "Respublika olimpiadasi",
+    "sports": "Sport tadbirlari",
+    "stem": "STEM laboratoriya ochilishi",
+    "others": "Boshqa"
+  },
+  "notFound": {
     "title": "Sahifa topilmadi",
     "desc": "Kechirasiz, siz qidirayotgan sahifa mavjud emas yoki o'chirilgan.",
     "homeBtn": "Bosh sahifaga",

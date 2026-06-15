@@ -408,6 +408,24 @@ export interface AdmissionCurrentResponse {
   documents: AdmissionDocument[];
 }
 
+export interface ScheduleItemTranslation {
+  title: string;
+}
+
+export interface ScheduleItem {
+  id: number;
+  translations: {
+    uz: ScheduleItemTranslation;
+    ru: ScheduleItemTranslation;
+    [key: string]: ScheduleItemTranslation;
+  };
+  file: string;
+  sort_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface MenuItem {
   label: string;
   href: string;

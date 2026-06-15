@@ -1,4 +1,4 @@
-import { Mail, Phone, Award } from 'lucide-react';
+import { Mail, Phone, Award, Calendar } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,8 @@ import { Teacher } from '../types';
 import { Skeleton } from '../components/ui/skeleton';
 import { SEO } from '../components/layout/SEO';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { Link } from 'react-router';
+import { ChevronRight, Home } from 'lucide-react';
 
 export function TeachersPage() {
   const { t, i18n } = useTranslation();
@@ -18,7 +20,6 @@ export function TeachersPage() {
     const fetchTeachers = async () => {
       try {
         const data = await teacherService.getAllTeachers();
-        // Sort by sort_order and filter only active members
         const activeTeachers = data.results
           .filter(teacher => teacher.is_active)
           .sort((a, b) => a.sort_order - b.sort_order);
@@ -34,43 +35,59 @@ export function TeachersPage() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
       <SEO 
         title={t('nav.teachers')} 
         description={t('teachers.pageSubtitle')}
       />
-      {/* Page Header */}
-      <div className="bg-gradient-to-r from-[#0d89b1] to-[#0d89b1] text-white py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-800">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex items-center gap-2 text-sm font-medium">
+            <Link to="/" className="text-gray-500 hover:text-[#0d89b1] transition-colors flex items-center gap-1">
+              <Home size={16} />
+              <span>{t('nav.home')}</span>
+            </Link>
+            <ChevronRight size={14} className="text-gray-400" />
+            <span className="text-gray-900 dark:text-white font-bold">{t('nav.teachers')}</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Page Title */}
+      <div className="py-12 md:py-16 text-center border-b border-gray-100 dark:border-gray-800">
+        <div className="container mx-auto px-4">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            className="text-2xl md:text-4xl font-black text-gray-900 dark:text-white uppercase tracking-tight"
           >
-            <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tight uppercase">{t('nav.teachers')}</h1>
-            <p className="text-lg md:text-2xl text-white/90 max-w-3xl leading-relaxed font-bold opacity-90 uppercase tracking-widest">
-              {t('teachers.pageSubtitle')}
-            </p>
-          </motion.div>
+            {t('nav.teachers')}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-gray-600 dark:text-gray-400 mt-3 text-base md:text-lg font-medium max-w-2xl mx-auto"
+          >
+            {t('teachers.pageSubtitle')}
+          </motion.p>
         </div>
       </div>
 
       {/* Teachers Grid */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
+      <section className="py-12 md:py-16 bg-gray-50/50 dark:bg-gray-900/30">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl mx-auto">
             {loading ? (
-              Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-white dark:bg-gray-950 rounded-[20px] overflow-hidden shadow-sm p-5 border border-gray-100 dark:border-gray-800">
-                  <Skeleton className="aspect-[4/5] rounded-[15px] w-full mb-6" />
-                  <div className="px-3 pb-5">
-                    <Skeleton className="h-8 w-3/4 mb-6" />
-                    <div className="space-y-4">
-                      <Skeleton className="h-6 w-full" />
-                      <Skeleton className="h-6 w-2/3" />
-                      <Skeleton className="h-6 w-1/2" />
-                    </div>
+              Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+                  <Skeleton className="aspect-[3/4] w-full" />
+                  <div className="p-4 space-y-3">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-2/3" />
                   </div>
                 </div>
               ))
@@ -83,47 +100,37 @@ export function TeachersPage() {
                     key={teacher.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white dark:bg-gray-950 rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col group"
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-800 group"
                   >
                     {/* Image Section */}
-                    <div className="p-5">
-                      <div className="aspect-[4/5] overflow-hidden rounded-[15px] bg-gray-100 dark:bg-gray-800">
-                        <ImageWithFallback
-                          src={teacher.photo}
-                          alt={teacher.full_name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
+                    <div className="aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-800">
+                      <ImageWithFallback
+                        src={teacher.photo}
+                        alt={teacher.full_name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
 
                     {/* Content Section */}
-                    <div className="px-8 pb-10 flex flex-col flex-grow">
-                      <h3 className="text-[28px] font-bold text-[#2d3e50] dark:text-white mb-6 leading-tight tracking-tight">
+                    <div className="p-4">
+                      <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight mb-1 line-clamp-2">
                         {teacher.full_name}
                       </h3>
                       
-                      <div className="space-y-5">
-                        {/* Position */}
-                        <div className="flex items-start gap-4">
-                          <div className="mt-1 flex-shrink-0">
-                            <Award className="w-6 h-6 text-blue-500" />
-                          </div>
-                          <p className="text-[#334155] dark:text-gray-300 text-lg font-medium leading-snug">
-                            {translation.position}
-                          </p>
-                        </div>
+                      <p className="text-xs text-[#0d89b1] font-semibold mb-3 leading-snug line-clamp-2">
+                        {translation.position}
+                      </p>
 
+                      <div className="space-y-2 pt-3 border-t border-gray-100 dark:border-gray-800">
                         {/* Phone */}
                         {teacher.phone && (
                           <a
                             href={`tel:${teacher.phone.replace(/\s/g, '')}`}
-                            className="flex items-center gap-4 text-[#334155] dark:text-gray-300 hover:text-emerald-600 transition-colors group/link"
+                            className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-emerald-600 transition-colors"
                           >
-                            <div className="flex-shrink-0">
-                              <Phone className="w-6 h-6 text-emerald-500" />
-                            </div>
-                            <span className="text-lg font-medium tracking-tight">{teacher.phone}</span>
+                            <Phone size={12} className="text-emerald-500 flex-shrink-0" />
+                            <span className="truncate">{teacher.phone}</span>
                           </a>
                         )}
 
@@ -131,23 +138,35 @@ export function TeachersPage() {
                         {teacher.email && (
                           <a
                             href={`mailto:${teacher.email}`}
-                            className="flex items-center gap-4 text-[#334155] dark:text-gray-300 hover:text-rose-500 transition-colors group/link"
+                            className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-rose-500 transition-colors"
                           >
-                            <div className="flex-shrink-0">
-                              <Mail className="w-6 h-6 text-rose-500" />
-                            </div>
-                            <span className="text-lg font-medium tracking-tight">{teacher.email}</span>
+                            <Mail size={12} className="text-rose-500 flex-shrink-0" />
+                            <span className="truncate">{teacher.email}</span>
                           </a>
+                        )}
+
+                        {/* Experience */}
+                        {teacher.experience_years > 0 && (
+                          <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+                            <Calendar size={12} className="text-purple-500 flex-shrink-0" />
+                            <h4 className='text-sm font-bold'>Tajriba: </h4>
+                            <span className='text-sm'>{teacher.experience_years} {t('teachers.years')}</span>
+                          </div>
                         )}
                       </div>
 
-                      {(teacher.academic_degree || teacher.academic_rank) && (
-                        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-                          <p className="text-gray-500 dark:text-gray-400 text-sm font-medium italic leading-relaxed">
-                            {[teacher.academic_degree, teacher.academic_rank].filter(Boolean).join(', ')}
-                          </p>
-                        </div>
-                      )}
+                      <div className="mt-3 pt-2 border-t border-gray-100 dark:border-gray-800 flex flex-wrap gap-1.5">
+                        {teacher.category && (
+                          <span className="inline-block px-2 py-0.5 bg-[#0d89b1]/10 dark:bg-[#0d89b1]/20 text-[10px] font-semibold text-[#0d89b1] rounded-md">
+                            {teacher.category_display || teacher.category}
+                          </span>
+                        )}
+                        {(teacher.academic_degree || teacher.academic_rank) && (
+                          <span className="inline-block px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-medium text-gray-500 dark:text-gray-400 rounded-md">
+                            {teacher.academic_degree || teacher.academic_rank}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
                 );
@@ -158,26 +177,27 @@ export function TeachersPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-white dark:bg-gray-950 transition-colors">
+      <section className="py-16 bg-white dark:bg-gray-950">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#0d89b1] to-[#0d89b1] rounded-lg p-16 text-center text-white shadow-2xl relative overflow-hidden" data-aos="zoom-in">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-[#0d89b1] to-[#0a7a9e] rounded-xl p-8 md:p-10 text-center text-white shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
             <div className="relative z-10">
-              <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center mx-auto mb-10 shadow-inner border border-white/20">
-                <Mail size={48} className="text-white" />
+              <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mx-auto mb-6 border border-white/20">
+                <Mail size={24} className="text-white" />
               </div>
-              <h2 className="text-3xl md:text-6xl font-black mb-8 uppercase tracking-tighter">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">
                 {t('teachers.ctaTitle')}
               </h2>
-              <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-bold opacity-90 uppercase tracking-widest">
+              <p className="text-sm md:text-base text-white/80 mb-6 max-w-xl mx-auto leading-relaxed">
                 {t('teachers.ctaDesc')}
               </p>
               <a
-                href="mailto:info@fstu.uz"
-                className="inline-flex items-center gap-4 px-12 py-6 bg-white text-[#0d89b1] rounded-lg hover:bg-gray-100 transition-all font-black shadow-2xl hover:scale-105 uppercase tracking-[0.2em] text-sm"
+                href="mailto:info@fdtu1al.uz"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#0d89b1] rounded-xl hover:bg-gray-100 transition-all font-bold shadow-lg hover:shadow-xl text-sm"
               >
-                <Mail size={28} />
-                INFO@FSTU.UZ
+                <Mail size={18} />
+                INFO@FDTU1AL.UZ
               </a>
             </div>
           </div>
