@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const faqService = {
   async getFAQs(): Promise<FAQItem[]> {
-    const response = await fetch(`${API_BASE_URL}/faqs/`);
+    const response = await fetch(`${API_BASE_URL}/faq/`);
     if (!response.ok) {
       throw new Error('Failed to fetch FAQs');
     }

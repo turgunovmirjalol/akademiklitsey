@@ -33,37 +33,47 @@ export interface ContactInfoResponse {
 export const contactService = {
   async submitContactForm(data: ContactFormData): Promise<ContactResponse> {
     try {
-      const response = await fetch(`${API_BASE_URL}/contact/`, {
+      // Backend (`/send/`) expects `full_name` and a subject from a fixed
+      // choice set (admission|general|complaint|suggestion|other).
+      const payload = {
+        full_name: data.name,
+        email: data.email,
+        phone: data.phone,
+        subject: data.subject || 'general',
+        message: data.message,
+      };
+
+      const response = await fetch(`${API_BASE_URL}/send/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
+      const resData = await response.json().catch(() => null);
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.message || 'Failed to submit contact form');
+        const errMsg =
+          resData?.detail ||
+          resData?.message ||
+          (resData && typeof resData === 'object'
+            ? Object.values(resData).flat().join(', ')
+            : null);
+        throw new Error(errMsg || 'Failed to submit contact form');
       }
 
-      return response.json();
+      return { success: true, message: resData?.detail || 'OK' };
     } catch (error) {
       console.error('Error submitting contact form:', error);
       throw error;
     }
   },
 
+  // The backend has no dedicated contact-info endpoint; contact details
+  // (address/phone/email/socials) come from `/settings/` via settingsService.
+  // The contact page falls back to those, so this returns an empty overlay.
   async getContactInfo(): Promise<ContactInfo[]> {
-    try {
-      const response = await fetch(`${API_BASE_URL}/contact/info/`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch contact info');
-      }
-      const data: ContactInfoResponse = await response.json();
-      return data.results || [];
-    } catch (error) {
-      console.error('Error fetching contact info:', error);
-      return [];
-    }
+    return [];
   }
 };

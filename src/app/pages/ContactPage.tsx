@@ -223,7 +223,7 @@ export function ContactPage() {
                     >
                       <option value="">{t('contact.subject')}</option>
                       <option value="admission">{t('contact.subjects.admission')}</option>
-                      <option value="education">{t('contact.subjects.education')}</option>
+                      <option value="general">{t('contact.subjects.education')}</option>
                       <option value="other">{t('contact.subjects.other')}</option>
                     </select>
                   </div>

@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://api.fdtu1al.uz';
 
 export const admissionService = {
   async getAdmissionDocuments(): Promise<AdmissionDocument[]> {
-    const response = await fetch(`${API_BASE_URL}/admission/documents/`);
+    const response = await fetch(`${API_BASE_URL}/documents/`);
     if (!response.ok) {
       throw new Error('Failed to fetch admission documents');
     }
@@ -12,7 +12,7 @@ export const admissionService = {
   },
 
   async getSubjects(): Promise<Subject[]> {
-    const response = await fetch(`${API_BASE_URL}/admission/subjects/`);
+    const response = await fetch(`${API_BASE_URL}/subjects/`);
     if (!response.ok) {
       throw new Error('Failed to fetch subjects');
     }
@@ -20,7 +20,7 @@ export const admissionService = {
   },
 
   async getCurrentAdmission(): Promise<AdmissionCurrentResponse> {
-    const response = await fetch(`${API_BASE_URL}/admission/current/`);
+    const response = await fetch(`${API_BASE_URL}/current/`);
     if (!response.ok) {
       throw new Error('Failed to fetch current admission info');
     }
