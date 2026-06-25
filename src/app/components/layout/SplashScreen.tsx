@@ -46,7 +46,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
               transition={{ duration: 1.2, ease: 'easeOut' }}
               className="w-44 h-44 md:w-56 md:h-56 flex items-center justify-center overflow-hidden"
             >
-              {showImage ? (
+              {showImage && (
                 <img
                   src={logoUrl}
                   alt=""
@@ -54,10 +54,6 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
                   onLoad={() => setImgState('loaded')}
                   onError={() => setImgState('error')}
                 />
-              ) : (
-                <span className="text-white font-black text-3xl md:text-4xl tracking-tight text-center leading-tight px-2">
-                  FDTU 1-AL
-                </span>
               )}
             </motion.div>
 
