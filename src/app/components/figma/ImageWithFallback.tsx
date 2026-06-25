@@ -16,18 +16,27 @@ export function ImageWithFallback({
   style,
   fallbackSrc = ERROR_IMG_SRC,
   priority = false,
-  objectFit = 'cover',
+  objectFit,
   loading,
+  onLoad,
   ...rest
 }: ImageWithFallbackProps) {
   const [didError, setDidError] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   const handleError = () => {
     setDidError(true)
   }
 
+  const handleLoad: React.ReactEventHandler<HTMLImageElement> = (e) => {
+    setLoaded(true)
+    onLoad?.(e)
+  }
+
   const imageStyle: React.CSSProperties = {
-    objectFit: objectFit,
+    ...(objectFit ? { objectFit } : {}),
+    opacity: loaded ? 1 : 0,
+    transition: 'opacity 0.4s ease',
     ...style,
   }
 
@@ -52,7 +61,9 @@ export function ImageWithFallback({
       className={className}
       style={imageStyle}
       loading={priority ? undefined : (loading ?? 'lazy')}
-      fetchPriority={priority ? 'high' : 'auto'}
+      fetchpriority={priority ? 'high' : 'auto'}
+      decoding="async"
+      onLoad={handleLoad}
       onError={handleError}
       {...rest}
     />

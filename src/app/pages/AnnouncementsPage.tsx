@@ -74,8 +74,12 @@ export function AnnouncementsPage() {
                 const date = new Date(announcement.published_at).toLocaleDateString(i18n.language === 'ru' ? 'ru-RU' : 'uz-UZ');
 
                 return (
-                  <motion.div
+                  <Link
+                    to={`/announcements/${announcement.slug}`}
                     key={announcement.id}
+                    className="block h-full"
+                  >
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -109,7 +113,7 @@ export function AnnouncementsPage() {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                         <p className="text-white text-sm font-bold line-clamp-2">
-                          {translation.short_description}
+                          {announcementService.getExcerpt(translation.content)}
                         </p>
                       </div>
                     </div>
@@ -120,18 +124,15 @@ export function AnnouncementsPage() {
                       </h3>
 
                       <p className="text-gray-600 dark:text-gray-400 mb-8 line-clamp-3 leading-relaxed text-base font-medium">
-                        {translation.short_description}
+                        {announcementService.getExcerpt(translation.content)}
                       </p>
 
                       <div className="mt-auto flex items-center justify-between">
-                        <Link
-                          to={`/announcements/${announcement.slug}`}
-                          className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs hover:gap-4 transition-all group/link"
-                        >
+                        <span className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs group-hover:gap-4 transition-all">
                           {t('home.announcements.details', 'Batafsil')}
-                          <ArrowRight size={20} className="group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                        
+                          <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        </span>
+
                         {announcement.views_count > 0 && (
                           <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
                             {announcement.views_count} views
@@ -140,6 +141,7 @@ export function AnnouncementsPage() {
                       </div>
                     </div>
                   </motion.div>
+                  </Link>
                 );
               })
             )}

@@ -39,7 +39,10 @@ export const SEO = ({
   }, [url]);
 
   // Convert relative image URLs to absolute
-  const getAbsoluteImageUrl = (imgUrl: string) => {
+  const getAbsoluteImageUrl = (imgUrl?: string | null) => {
+    if (!imgUrl) {
+      return 'https://fdtu1al.uz/litseylogo.png';
+    }
     if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) {
       return imgUrl;
     }

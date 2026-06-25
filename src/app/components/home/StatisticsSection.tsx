@@ -1,19 +1,9 @@
-import { Users, GraduationCap, Trophy, School, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { statisticService } from '../../services/statisticService';
 import { StatItem } from '../../types';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-
-const iconMap: Record<string, any> = {
-  users: Users,
-  'graduation-cap': GraduationCap,
-  graduationCap: GraduationCap,
-  trophy: Trophy,
-  school: School,
-  togaraklar: Trophy,
-};
 
 export function StatisticsSection() {
   const { t, i18n } = useTranslation();
@@ -41,15 +31,7 @@ export function StatisticsSection() {
     fetchStats();
   }, []);
 
-  if (loading) {
-    return (
-      <section className="relative py-24 bg-gray-900 flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 text-[#0d89b1] animate-spin" />
-      </section>
-    );
-  }
-
-  if (stats.length === 0) {
+  if (!loading && stats.length === 0) {
     return null;
   }
 
@@ -76,8 +58,19 @@ export function StatisticsSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((stat, index) => {
-            const Icon = iconMap[stat.icon] || Users;
+          {loading && Array.from({ length: 4 }).map((_, index) => (
+            <div
+              key={index}
+              className="relative bg-white/5 backdrop-blur-xl rounded-xl p-8 text-center border border-white/10 overflow-hidden"
+            >
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="h-10 w-20 bg-white/10 rounded-md animate-pulse mb-3"></div>
+                <div className="h-3 w-24 bg-white/10 rounded-md animate-pulse"></div>
+              </div>
+            </div>
+          ))}
+
+          {!loading && stats.map((stat, index) => {
             const translation = statisticService.getTranslation(stat, i18n.language);
             
             // Handle numeric values
@@ -96,10 +89,6 @@ export function StatisticsSection() {
                 <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#0d89b1]/10 rounded-full blur-2xl group-hover:bg-[#0d89b1]/20 transition-all duration-500"></div>
                 
                 <div className="relative z-10">
-                  <div className="w-14 h-14 bg-white/10 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-[#0d89b1] group-hover:text-white transition-all duration-500 transform group-hover:scale-110 shadow-xl border border-white/5">
-                    <Icon size={24} className="text-[#0d89b1] group-hover:text-white transition-colors duration-500" />
-                  </div>
-                  
                   <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tighter">
                     {inView ? (
                       <CountUp end={numericValue} duration={3} suffix={suffix} />

@@ -70,9 +70,10 @@ export function NewsPage() {
             {news.map((item) => {
               const translation = newsService.getTranslation(item, i18n.language);
               return (
-                <article
+                <Link
+                  to={`/news/${item.slug}`}
                   key={item.id}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+                  className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
                 >
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -94,18 +95,15 @@ export function NewsPage() {
                     </h3>
 
                     <p className="text-gray-600 mb-4 line-clamp-3">
-                      {translation.short_description}
+                      {newsService.getExcerpt(translation.content)}
                     </p>
 
-                    <Link
-                      to={`/news/${item.slug}`}
-                      className="inline-flex items-center gap-2 text-[#0d89b1] font-semibold hover:gap-3 transition-all"
-                    >
+                    <span className="inline-flex items-center gap-2 text-[#0d89b1] font-semibold group-hover:gap-3 transition-all">
                       {t('home.moreBtn', 'Batafsil o\'qish')}
                       <ArrowRight size={18} />
-                    </Link>
+                    </span>
                   </div>
-                </article>
+                </Link>
               );
             })}
             

@@ -128,7 +128,7 @@ export function HeroSection() {
                   <ImageWithFallback
                     src={slider.image}
                     alt={translation.title}
-                    className="w-full h-full object-contain max-w-none"
+                    className="w-full h-full max-w-none object-cover md:object-contain"
                     priority={index === 0}
                   />
                 </div>
@@ -144,15 +144,15 @@ export function HeroSection() {
                 <div className="max-w-4xl text-white">
                   <div
                     data-swiper-parallax="-300"
-                    className="inline-flex items-center gap-2 px-4 py-1.5 md:px-5 md:py-2 bg-[#0d89b1]/15 backdrop-blur-xl rounded-full text-[10px] md:text-xs font-black mb-6 md:mb-8 uppercase tracking-[0.3em] border border-[#0d89b1]/40 shadow-[0_0_20px_rgba(13,137,177,0.2)]"
+                    className="inline-flex items-center gap-2 px-3 py-1 md:px-5 md:py-2 bg-[#0d89b1]/15 backdrop-blur-xl rounded-full text-[8px] md:text-xs font-black mb-3 md:mb-8 uppercase tracking-[0.2em] md:tracking-[0.3em] border border-[#0d89b1]/40 shadow-[0_0_20px_rgba(13,137,177,0.2)]"
                   >
-                    <span className="w-2 h-2 bg-[#0d89b1] rounded-full animate-pulse shadow-[0_0_10px_#0d89b1]"></span>
+                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#0d89b1] rounded-full animate-pulse shadow-[0_0_10px_#0d89b1]"></span>
                     {t("home.heroBadge", "LITSEYIMIZNING YANGI DAVRI")}
                   </div>
 
                   <h1
                     data-swiper-parallax="-500"
-                    className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 md:mb-8 leading-[1.1] tracking-tight uppercase"
+                    className="text-2xl md:text-4xl lg:text-6xl font-black mb-3 md:mb-8 leading-[1.15] tracking-tight uppercase"
                   >
                     <span className="block text-white">
                       {translation.title}
@@ -161,29 +161,29 @@ export function HeroSection() {
 
                   <p
                     data-swiper-parallax="-700"
-                    className="text-lg md:text-2xl text-gray-200 mb-8 md:mb-12 leading-relaxed font-bold opacity-90 max-w-2xl border-l-4 border-[#0d89b1] pl-6 md:pl-8 "
+                    className="text-sm md:text-2xl text-gray-200 mb-5 md:mb-12 leading-relaxed font-bold opacity-90 max-w-2xl border-l-4 border-[#0d89b1] pl-4 md:pl-8 line-clamp-3 md:line-clamp-none"
                   >
                     {translation.description}
                   </p>
 
                   <div
                     data-swiper-parallax="-900"
-                    className="flex flex-wrap gap-4 md:gap-6"
+                    className="flex flex-wrap gap-3 md:gap-6"
                   >
                     <Link
                       to="/admission"
-                      className="group/btn relative inline-flex items-center gap-3 md:gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#0d89b1] text-white rounded-xl hover:bg-[#0d89b1] transition-all duration-500 transform hover:-translate-y-1 font-black uppercase tracking-[0.2em] text-xs md:text-sm shadow-2xl"
+                      className="group/btn relative inline-flex items-center gap-2 md:gap-4 px-5 py-2.5 md:px-12 md:py-6 bg-[#0d89b1] text-white rounded-xl hover:bg-[#0d89b1] transition-all duration-500 transform hover:-translate-y-1 font-black uppercase tracking-[0.15em] md:tracking-[0.2em] text-[10px] md:text-sm shadow-2xl"
                     >
                       {t("home.admissionBtn")}
                       <ChevronRight
-                        size={20}
+                        size={16}
                         className="md:w-6 md:h-6 group-hover/btn:translate-x-1 transition-transform"
                       />
                     </Link>
 
                     <Link
                       to="/about"
-                      className="inline-flex items-center gap-3 px-8 py-4 md:px-12 md:py-6 bg-white/5 backdrop-blur-xl text-white rounded-xl hover:bg-white/10 transition-all duration-500 transform hover:-translate-y-1 font-black uppercase tracking-[0.2em] text-xs md:text-sm border border-white/10"
+                      className="inline-flex items-center gap-2 md:gap-3 px-5 py-2.5 md:px-12 md:py-6 bg-white/5 backdrop-blur-xl text-white rounded-xl hover:bg-white/10 transition-all duration-500 transform hover:-translate-y-1 font-black uppercase tracking-[0.15em] md:tracking-[0.2em] text-[10px] md:text-sm border border-white/10"
                     >
                       {t("home.moreBtn")}
                     </Link>

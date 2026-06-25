@@ -84,11 +84,12 @@ export function NewsSection() {
           {news.map((item, index) => {
             const translation = newsService.getTranslation(item, i18n.language);
             return (
-              <article
+              <Link
+                to={`/news/${item.slug}`}
                 key={item.id}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100 dark:border-gray-800"
+                className="block bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border border-gray-100 dark:border-gray-800"
               >
                 <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <ImageWithFallback
@@ -110,18 +111,15 @@ export function NewsSection() {
                   </h3>
 
                   <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3 leading-relaxed text-lg font-medium">
-                    {translation.short_description}
+                    {newsService.getExcerpt(translation.content)}
                   </p>
 
-                  <Link
-                    to={`/news/${item.slug}`}
-                    className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs hover:gap-4 transition-all group/link"
-                  >
+                  <span className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs group-hover:gap-4 transition-all">
                     {t('home.moreBtn', 'Batafsil o\'qish')}
-                    <ArrowRight size={20} className="group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
-              </article>
+              </Link>
             );
           })}
         </div>

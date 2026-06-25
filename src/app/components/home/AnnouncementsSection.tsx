@@ -66,11 +66,12 @@ export function AnnouncementsSection() {
             const date = new Date(announcement.published_at).toLocaleDateString(i18n.language === 'ru' ? 'ru-RU' : 'uz-UZ');
             
             return (
-              <div
+              <Link
+                to={`/announcements/${announcement.slug}`}
                 key={announcement.id}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="group relative bg-white dark:bg-gray-950 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-800"
+                className="group relative block bg-white dark:bg-gray-950 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-800"
               >
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -116,18 +117,15 @@ export function AnnouncementsSection() {
                   </h3>
 
                   <p className="text-gray-600 dark:text-gray-400 mb-8 line-clamp-2 leading-relaxed text-sm font-medium">
-                    {translation.short_description}
+                    {announcementService.getExcerpt(translation.content)}
                   </p>
 
-                  <Link
-                    to={`/announcements/${announcement.slug}`}
-                    className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs hover:gap-4 transition-all group/link"
-                  >
+                  <span className="inline-flex items-center gap-2 text-[#0d89b1] font-black uppercase tracking-[0.2em] text-xs group-hover:gap-4 transition-all">
                     {t('home.announcements.details', 'Batafsil')}
-                    <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

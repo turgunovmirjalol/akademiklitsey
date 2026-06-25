@@ -1,6 +1,5 @@
 export interface NewsTranslation {
   title: string;
-  short_description: string;
   content: string;
 }
 
@@ -17,7 +16,6 @@ export interface NewsItem {
   views_count: number;
   status: string;
   status_display: string;
-  is_featured: boolean;
   published_at: string;
   created_at: string;
   updated_at: string;
@@ -33,7 +31,6 @@ export interface NewsResponse {
 
 export interface AnnouncementTranslation {
   title: string;
-  short_description: string;
   content: string;
 }
 

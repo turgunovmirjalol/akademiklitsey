@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
-import { Calendar, ArrowLeft, Loader2, Eye, Share2 } from 'lucide-react';
+import { Calendar, ArrowLeft, Eye, Share2 } from 'lucide-react';
+import { Skeleton } from '../components/ui/skeleton';
 import { newsService } from '../services/newsService';
 import { NewsItem } from '../types';
 import { useTranslation } from 'react-i18next';
@@ -45,12 +46,40 @@ export function NewsDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="animate-spin text-[#0d89b1]" size={48} />
-          <p className="text-gray-500 font-medium animate-pulse">Yuklanmoqda...</p>
+      <article className="min-h-screen bg-white dark:bg-gray-950 pb-32">
+        {/* Article Header Skeleton */}
+        <header className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-100 dark:border-gray-800 pt-16 pb-12">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <Skeleton className="h-4 w-28 mb-8" />
+              <Skeleton className="h-10 md:h-12 w-full mb-3" />
+              <Skeleton className="h-10 md:h-12 w-2/3 mb-8" />
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-gray-200 dark:border-gray-800 pt-6">
+                <Skeleton className="h-5 w-32" />
+                <Skeleton className="h-5 w-24" />
+                <Skeleton className="h-10 w-32 rounded-lg ml-auto" />
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Article Body Skeleton */}
+        <div className="container mx-auto px-4 mt-12">
+          <div className="max-w-4xl mx-auto">
+            <Skeleton className="w-full aspect-video rounded-2xl mb-16" />
+
+            <div className="px-0 md:px-4 space-y-4">
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-5/6" />
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-3/4" />
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-2/3" />
+            </div>
+          </div>
         </div>
-      </div>
+      </article>
     );
   }
 
@@ -76,9 +105,9 @@ export function NewsDetailPage() {
 
   return (
     <article className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 pb-32">
-      <SEO 
-        title={translation.title} 
-        description={translation.short_description}
+      <SEO
+        title={translation.title}
+        description={newsService.getExcerpt(translation.content)}
         image={news.image}
         type="article"
         publishedTime={news.published_at}
@@ -95,7 +124,7 @@ export function NewsDetailPage() {
             "@context": "https://schema.org",
             "@type": "NewsArticle",
             "headline": translation.title,
-            "description": translation.short_description,
+            "description": newsService.getExcerpt(translation.content),
             "image": [news.image],
             "datePublished": news.published_at,
             "dateModified": news.updated_at,
@@ -177,28 +206,19 @@ export function NewsDetailPage() {
                 className="w-full h-full object-cover"
               />
             </div>
-            {translation.short_description && (
-              <figcaption className="mt-6 px-4 md:px-0">
-                <p className="text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-400 leading-relaxed italic bg-[#0d89b1]/5 p-6 rounded-xl border border-[#0d89b1]/10">
-                  {translation.short_description}
-                </p>
-              </figcaption>
-            )}
           </figure>
 
           {/* Content Body */}
           <div className="px-0 md:px-4">
-            <div 
-              className="prose prose-lg md:prose-xl dark:prose-invert max-w-none 
-                text-gray-800 dark:text-gray-200 
-                leading-[1.8] font-normal 
-                prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-                prose-p:mb-8
-                prose-img:rounded-xl prose-img:shadow-md
-                prose-a:text-[#0d89b1] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-bold"
-              dangerouslySetInnerHTML={{ __html: translation.content }}
-            />
+            <div className="text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-[1.8] font-normal space-y-6">
+              {translation.content.split(/\n{2,}/).map((paragraph, index) => (
+                paragraph.trim() && (
+                  <p key={index} className="whitespace-pre-line">
+                    {paragraph.trim()}
+                  </p>
+                )
+              ))}
+            </div>
 
             {/* Bottom Navigation */}
             <footer className="mt-24 pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row items-center justify-between gap-8">

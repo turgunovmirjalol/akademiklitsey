@@ -31,5 +31,11 @@ export const announcementService = {
     
     // Default to 'uz' if translation for the requested language doesn't exist
     return (translations as any)[lang] || translations.uz;
+  },
+
+  getExcerpt(content: string, maxLen = 140): string {
+    const plain = (content || '').replace(/\s+/g, ' ').trim();
+    if (plain.length <= maxLen) return plain;
+    return `${plain.slice(0, maxLen).trimEnd()}...`;
   }
 };
